@@ -112,42 +112,56 @@ Availability is limited and tied to individual developer's schedules.
 
 As the product has evolved from an internal tool running in our internal network, we have made certain assumptions about the trustworthiness of our users. As such, there is little to no security or encryption between the different processes. Furthermore, devices do not get completely reset between uses, potentially leaving accounts logged in or exposing other sensitive data. This is not an issue for us, as all of our devices are test devices and are only used with test accounts, but it may be an issue for you if you plan on deploying STF to a multiuser environment. We welcome contributions in this area.
 
-## Requirements
+## Installation (OSX Only)
 
-* [Node.js](https://nodejs.org/) >= 6.9 (latest stable version preferred)
-* [ADB](http://developer.android.com/tools/help/adb.html) properly set up
-* [RethinkDB](http://rethinkdb.com/) >= 2.2
-* [GraphicsMagick](http://www.graphicsmagick.org/) (for resizing screenshots)
-* [ZeroMQ](http://zeromq.org/) libraries installed
-* [Protocol Buffers](https://github.com/google/protobuf) libraries installed
-* [yasm](http://yasm.tortall.net/) installed (for compiling embedded [libjpeg-turbo](https://github.com/sorccu/node-jpeg-turbo))
-* [pkg-config](http://www.freedesktop.org/wiki/Software/pkg-config/) so that Node.js can find the libraries
+Install Xcode 10.0
+Install Xcode 10.2
 
-Note that you need these dependencies even if you've installed STF directly from [NPM](https://www.npmjs.com/), because they can't be included in the package.
+Replace 10.2's XCTest.framework with an older version: https://github.com/facebookarchive/WebDriverAgent/issues/1093#issuecomment-481623523
 
-On Mac OS, you can use [homebrew](http://brew.sh/) to install most of the dependencies:
-
+Add line "export PATH="/Applications/Xcode.app/Contents/Developer:$PATH" to your bash profile
 ```bash
-brew install rethinkdb graphicsmagick zeromq protobuf yasm pkg-config
+sudo nano ~/.bash_profile
 ```
 
-On Windows you're on your own. In theory you might be able to get STF installed via [Cygwin](https://www.cygwin.com/) or similar, but we've never tried. In principle we will not provide any Windows installation support, but please do send a documentation pull request if you figure out what to do.
-
-We also provide a [Docker](http://docker.com/) container in the [Docker Hub](https://hub.docker.com/) as [openstf/stf](https://registry.hub.docker.com/u/openstf/stf/). You can use our [Dockerfile](Dockerfile) as guidance if you'd prefer to do the installation yourself.
-
-You should now be ready to [build](#building) or [run](#running) STF.
-
-Note that while Mac OS can be used for development, it doesn't provide a very reliable experience in production due to (presumed) bugs in ADB's Mac OS implementation. We use [CoreOS](https://coreos.com/) but any Linux or BSD distribution should do fine.
-
-## Installation
-
-As mentioned earlier, you must have all of the [requirements](#requirements) installed first. Then you can simply install via NPM:
-
+Install brew and dependencies
 ```bash
-npm install -g stf
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install usbmuxd
+brew install libimobiledevice --HEAD
+brew install ideviceinstaller
+brew install carthage
+brew install socat
+brew install graphicsmagick zeromq protobuf yasm pkg-config
 ```
 
-Now you're ready to [run](#running). For development, though, you should [build](#building) instead.
+Download repositories
+```bash
+mkdir /farm
+cd /farm
+git clone https://github.com/oddgames-david/stf.git stf_oddgames
+cd stf_mrx1203/bin
+git clone https://github.com/mrx1203/WebDriverAgent.git WebDriverAgent
+```
+
+You'll get an error with the next command but it doesn't seem to affect it
+Error: Cannot find module 'eslint-config-appium'
+```bash
+./Scripts/bootstrap.sh
+```
+
+Open /farm/stf_oddgames/bin/WebDriverAgent/WebDriverAgent.xcodeproj in Xcode
+
+Turn on automatically manage signing and choose your team
+Select WebDriverAgentRunner scheme
+Build
+Test (to make sure you are actually able to deploy to device)
+
+
+Run it
+```base
+./farm/stf_oddgames/bin/stf  local --public-ip x.x.x.x
+```
 
 ## Building
 
