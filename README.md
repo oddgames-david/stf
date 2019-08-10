@@ -59,7 +59,7 @@ rethinkdb
 ```
 
 ```bash
-./farm/stf_oddgames/bin/stf  local --public-ip <ipaddress>
+/farm/stf_oddgames/bin/stf  local --public-ip <ipaddress>
 ```
 
 ## License
