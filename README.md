@@ -1,6 +1,7 @@
 ## Installation (OSX Only)
 
 Install Xcode 10.0
+
 Install Xcode 10.2
 
 Replace 10.2's XCTest.framework with an older version: https://github.com/facebookarchive/WebDriverAgent/issues/1093#issuecomment-481623523
@@ -31,6 +32,7 @@ git clone https://github.com/mrx1203/WebDriverAgent.git WebDriverAgent
 ```
 
 You'll get an error with the next command but it doesn't seem to affect it
+
 Error: Cannot find module 'eslint-config-appium'
 ```bash
 ./Scripts/bootstrap.sh
@@ -38,9 +40,13 @@ Error: Cannot find module 'eslint-config-appium'
 
 Open /farm/stf_oddgames/bin/WebDriverAgent/WebDriverAgent.xcodeproj in Xcode
 
+
 Turn on automatically manage signing and choose your team
+
 Select WebDriverAgentRunner scheme
+
 Build
+
 Test (to make sure you are actually able to deploy to device)
 
 
