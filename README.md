@@ -43,7 +43,7 @@ cd WebDriverAgent
 Open /farm/stf_oddgames/bin/WebDriverAgent/WebDriverAgent.xcodeproj in Xcode
 
 
-Turn on automatically manage signing and choose your team
+Turn on automatically manage signing and choose your team for all schemes (Including IntegrationApp)
 
 Select WebDriverAgentRunner scheme
 
