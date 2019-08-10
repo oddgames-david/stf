@@ -27,7 +27,9 @@ Download repositories
 mkdir /farm
 cd /farm
 sudo git clone https://github.com/oddgames-david/stf.git stf_oddgames
-cd stf_oddgames/bin
+cd stf_oddgames
+npm install
+cd bin
 sudo git clone https://github.com/mrx1203/WebDriverAgent.git WebDriverAgent
 ```
 
