@@ -26,15 +26,15 @@ Download repositories
 ```bash
 mkdir /farm
 cd /farm
-git clone https://github.com/oddgames-david/stf.git stf_oddgames
+sudo git clone https://github.com/oddgames-david/stf.git stf_oddgames
 cd stf_oddgames/bin
-git clone https://github.com/mrx1203/WebDriverAgent.git WebDriverAgent
+sudo git clone https://github.com/mrx1203/WebDriverAgent.git WebDriverAgent
 ```
 
-You'll get an error with the next command but it doesn't seem to affect it
+You may receive 'Cannot find module 'eslint-config-appium' on the next command, just ignore it.
 
-Error: Cannot find module 'eslint-config-appium'
 ```bash
+cd WebDriverAgent
 ./Scripts/bootstrap.sh
 ```
 
@@ -57,7 +57,7 @@ rethinkdb
 ```
 
 ```bash
-./farm/stf_oddgames/bin/stf  local --public-ip x.x.x.x
+./farm/stf_oddgames/bin/stf  local --public-ip <ipaddress>
 ```
 
 ## License
